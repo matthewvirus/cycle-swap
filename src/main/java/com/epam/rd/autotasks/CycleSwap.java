@@ -14,14 +14,17 @@ class CycleSwap {
 
     static void cycleSwap(int[] array, int shift) {
         try {
-            int[] buf = new int[array.length];
-            int iteration = 1;
-            while (iteration > 0) {
+            if (shift < array.length) {
+                int[] buf = new int[array.length];
                 System.arraycopy(array, 0, buf, shift, array.length-shift);
                 System.arraycopy(array, array.length-shift, buf, 0, shift);
-                break;
+                for (int i = 0; i < array.length; i++) {
+                    array[i] = buf[i];
+                }
             }
-            array = buf;
+            else {
+                array = array;
+            }
         }
         catch (ArrayIndexOutOfBoundsException exception) {
             exception.printStackTrace();
